@@ -238,6 +238,12 @@ vim.opt.rtp:prepend(lazypath)
 --
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
+  -- custom plugins
+  'terryma/vim-multiple-cursors',
+
+  -- end of custom plugins
+  --
+  --
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
@@ -718,7 +724,7 @@ require('lazy').setup({
           function(server_name)
             local server = servers[server_name] or {}
             -- This handles overriding only values explicitly passed
-            -- by the server configuration above. Useful when disabling
+            -- by the server configuration above. Useful when disablingyaml
             -- certain features of an LSP (for example, turning off formatting for ts_ls)
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
             require('lspconfig')[server_name].setup(server)
@@ -910,6 +916,7 @@ require('lazy').setup({
       -- - sd'   - [S]urround [D]elete [']quotes
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
+      require('mini.pairs').setup()
 
       -- Simple and easy statusline.
       --  You could remove this setup call if you don't like it,
