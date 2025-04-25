@@ -1,7 +1,6 @@
 --[[
 
-=====================================================================
-==================== READ THIS BEFORE CONTINUING ====================
+===================================================================== ==================== READ THIS BEFORE CONTINUING ====================
 =====================================================================
 ========                                    .-----.          ========
 ========         .----------------------.   | === |          ========
@@ -240,6 +239,24 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   -- custom plugins
   'terryma/vim-multiple-cursors',
+  {
+    'f-person/git-blame.nvim',
+    -- load the plugin at startup
+    event = 'VeryLazy',
+    -- Because of the keys part, you will be lazy loading this plugin.
+    -- The plugin will only load once one of the keys is used.
+    -- If you want to load the plugin at startup, add something like event = "VeryLazy",
+    -- or lazy = false. One of both options will work.
+    opts = {
+      -- your configuration comes here
+      -- for example
+      enabled = true, -- if you want to enable the plugin
+      message_template = ' <summary> • <date> • <author> • <<sha>>', -- template for the blame message, check the Message template section for more options
+      --   date_format = '%m-%d-%Y %H:%M:%S', -- template for the date, check Date format section for more options
+      date_format = '%r',
+      virtual_text_column = 1, -- virtual text start column, check Start virtual text at column section for more options
+    },
+  },
 
   -- end of custom plugins
   --
@@ -834,6 +851,7 @@ require('lazy').setup({
         --
         -- See :h blink-cmp-config-keymap for defining your own keymap
         preset = 'default',
+        ['<C-Z>'] = { 'accept', 'fallback' },
 
         -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
         --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
